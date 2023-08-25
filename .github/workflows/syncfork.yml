@@ -1,0 +1,23 @@
+name: Sync Fork With Upstream
+
+on: 
+  workflow_dispatch:
+  schedule:
+  - cron: "0 13 * * 1"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Sync Fork with Upstream
+      # You may pin to the exact commit or the version.
+      # uses: AbdulmelikKalkan/sync-fork-upstream@6ec773469487cc30a2631d2cfafc1b0f1f82ca6d
+      uses: AbdulmelikKalkan/sync-fork-upstream@v1.3
+      with:
+        # The account owner of the repository.
+        owner: OWASP
+        # The name of the repository.
+        repo: API-Security
+        # The name of the branch which should be updated to match upstream.
+        branch: master
