@@ -1,5 +1,4 @@
-name: Sync Fork
-
+name: GitHub Forks Sync Action
 on: 
   workflow_dispatch:
   schedule:
@@ -10,18 +9,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # node12 v2, node16 v3
-    - name: Checkout first
-      uses: actions/checkout@v3
-      with:
-        repository: https://github.com/OWASP/API-Security
-        ref: 'master'
-        #token: '${{ github.token }}'
 
-    - name: Sync and merge upstream repository with your current repository
-      uses: dabreadman/sync-upstream-repo@v1.3.0
+    - name: GitHub Forks Sync Action
+    # You may pin to the exact commit or the version.
+    # uses: TobKed/github-forks-sync-action@0e6954211b0700763da003e7678907a77f65253c
+      uses: TobKed/github-forks-sync-action@v0.2.0
       with:
-        upstream_repo: https://github.com/OWASP/API-Security
+        # Token for the repo. Can be passed in using $\{{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        # Repository name to clone.
+        upstream_repository: https://github.com/OWASP/API-Security
+        # Repository name to push. Default or empty value represents current github repository (${GITHUB_REPOSITORY})
+        #target_repository: # optional, default is 
+        # Source branch from which changes will be pushed.
         upstream_branch: master
-        downstream_branch: master
-        token: ${{ secrets.GITHUB_TOKEN }}
+        # Destination branch to push changes.
+        target_branch: master
+        # Determines if force push is used
+        #force: # optional
+        # Determines if --tags is used
+        #tags: # optional
+   
