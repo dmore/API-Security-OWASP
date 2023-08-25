@@ -1,0 +1,21 @@
+name: Sync Fork
+
+on: 
+  workflow_dispatch:
+  schedule:
+  - cron: "0 13 * * 1"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@V2
+
+    - name: Sync and merge upstream repository with your current repository
+      uses: dabreadman/sync-upstream-repo@v1.3.0
+      with:
+        upstream_repo: https://github.com/OWASP/API-Security
+        upstream_branch: master
+        downstream_branch: master
+        token: ${{ secrets.GITHUB_TOKEN }}
