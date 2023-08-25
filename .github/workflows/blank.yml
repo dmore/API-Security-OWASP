@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    # node12 v2, node16 v3
+    - uses: actions/checkout@v3
 
     - name: Sync and merge upstream repository with your current repository
       uses: dabreadman/sync-upstream-repo@v1.3.0
