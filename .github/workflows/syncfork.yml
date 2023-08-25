@@ -21,3 +21,4 @@ jobs:
         repo: API-Security
         # The name of the branch which should be updated to match upstream.
         branch: master
+        token: ${{ secrets.GITHUB_TOKEN }}
