@@ -1,0 +1,27 @@
+name: Sync Upstream
+
+on: 
+  workflow_dispatch:
+  schedule:
+  - cron: "0 13 * * 1"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Sync Upstream
+      # You may pin to the exact commit or the version.
+      # uses: zhangnew/sync-upstream@65060a2fa0bbbbf7ef07add408d1ed3dae9e53f8
+      uses: zhangnew/sync-upstream@v1
+      with:
+        # User name - required for git commits
+        #username: # optional, default is sync-upstream-bot
+        # User email - required for git commits
+        #useremail: # optional, default is bot@github.com
+        # Upstream repository owner/name. For example, zhangnew/sync-upstream
+        upstream: OWASP/API-Security
+        # Upstream branch to merge from. For example, master
+        upstream-branch: master
+        branch: master
+        token: ${{ secrets.GITHUB_TOKEN }}
